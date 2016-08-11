@@ -1,0 +1,13 @@
+logs
+target
+data
+out
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+*.iml
+/RUNNING_PID
+!project/plugins.sbt
+!project/build.properties
