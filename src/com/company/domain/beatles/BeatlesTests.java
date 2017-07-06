@@ -1,4 +1,4 @@
-package com.company.domain;
+package com.company.domain.beatles;
 
 import java.util.Arrays;
 import java.util.List;

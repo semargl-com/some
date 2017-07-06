@@ -1,4 +1,4 @@
-package com.company.domain.tests;
+package com.company.domain.beatles.tests;
 
 public class Check {
 
