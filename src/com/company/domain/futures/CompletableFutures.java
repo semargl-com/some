@@ -14,7 +14,7 @@ import java.util.concurrent.CompletionStage;
 public class CompletableFutures {
 
     public CompletableFutures() throws Exception {
-        test5();
+        test8();
     }
 
     public void test1() throws Exception {
@@ -59,5 +59,23 @@ public class CompletableFutures {
         CompletableFuture.supplyAsync(this::failedSupplier)
                 .exceptionally((ex) -> "Handling: " + ex.getMessage())
                 .thenAccept(Main::log);
+    }
+
+    public void test6() throws Exception {
+        CompletableFuture<String> first = CompletableFuture.supplyAsync(() -> "Hello ");
+        CompletableFuture<String> second = CompletableFuture.supplyAsync(() -> "World!");
+        first.thenCombine(second, (res1, res2) -> { Main.log(res1 + res2); return null; }); // executes when both parallel done
+    }
+
+    public void test7() throws Exception {
+        CompletableFuture<String> first = CompletableFuture.supplyAsync(() -> "Hello ");
+        CompletableFuture<String> second = CompletableFuture.supplyAsync(() -> "World!");
+        first.runAfterBoth(second, () -> Main.log("Both done")); // executes when both parallel done
+    }
+
+    public void test8() throws Exception {
+        CompletableFuture<String> first = CompletableFuture.supplyAsync(() -> "Hello ");
+        CompletableFuture<String> second = CompletableFuture.supplyAsync(() -> "World!");
+        first.acceptEither(second, Main::log); // executes when any first done
     }
 }
